@@ -22,6 +22,15 @@ the correct location for it to work.  The preferred location will be to place th
 directory (`%APPDATA%\terraform.d\plugins` for you Windows-using types), however terraform can look other places.  See the
 [terraform documentation](https://www.terraform.io/docs/extend/how-terraform-works.html#plugin-locations) for more info.
 
+Download the pre-compiled program from the [release page](https://github.com/mmmorris1975/terraform-provisioner-aws-autoscaling/releases/latest)
+and do the necessary file movements to install the file in the appropriate location.
+Example for Linux (assumes file is already downloaded to current directory):
+
+```
+$ mv terraform-provisioner-aws-autoscaling_vx.y.z_linux-amd64 ~/.terraform.d/plugins/terraform-provisioner-aws-autoscaling_vx.y.z
+$ chmod 755 ~/.terraform.d/plugins/terraform-provisioner-aws-autoscaling*
+```
+
 Configuration
 ---
 Configuration properties of the provider are not made visible to the provisioner plugin, so it is necessary to repeat
