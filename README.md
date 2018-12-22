@@ -1,5 +1,7 @@
 AWS Auto Scaling Terraform Provisioner
 ===
+[![Go Report Card](https://goreportcard.com/badge/github.com/mmmorris1975/terraform-provisioner-aws-autoscaling)](https://goreportcard.com/report/github.com/mmmorris1975/terraform-provisioner-aws-autoscaling)
+
 Replace AWS AutoScaling instances similar to the AWS CloudFormation 
 [Update Policy](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-attribute-updatepolicy.html) feature.
 
