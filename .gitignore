@@ -2,3 +2,5 @@
 .terraform
 terraform.tf*
 *.tf
+
+vendor/
