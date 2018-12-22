@@ -9,71 +9,72 @@ import (
 )
 
 const (
-	SchemaAsgName    = "asg_name"
-	SchemaRegion     = "region"
-	SchemaAccessKey  = "access_key"
-	SchemaSecretKey  = "secret_key"
-	SchemaToken      = "token"
-	SchemaProfile    = "profile"
-	SchemaBatchSize  = "batch_size"
-	SchemaMIIS       = "min_instances_in_service"
-	SchemaPauseTime  = "pause_time"
-	SchemaASGNewTime = "asg_new_time"
+	schemaAsgName    = "asg_name"
+	schemaRegion     = "region"
+	schemaAccessKey  = "access_key"
+	schemaSecretKey  = "secret_key"
+	schemaToken      = "token"
+	schemaProfile    = "profile"
+	schemaBatchSize  = "batch_size"
+	schemaMIIS       = "min_instances_in_service"
+	schemaPauseTime  = "pause_time"
+	schemaASGNewTime = "asg_new_time"
 )
 
+// define the provisioner schema and actions
 func Provisioner() terraform.ResourceProvisioner {
 	return &schema.Provisioner{
 		Schema: map[string]*schema.Schema{
-			SchemaAsgName: {
+			schemaAsgName: {
 				Type:        schema.TypeString,
 				Required:    true,
 				Description: "The name of the AutoScaling Group to manage",
 			},
-			SchemaRegion: {
+			schemaRegion: {
 				Type:        schema.TypeString,
 				Optional:    true,
 				Description: "The AWS region, if not specified look up value from environment or profile",
 			},
-			SchemaAccessKey: {
+			schemaAccessKey: {
 				Type:        schema.TypeString,
 				Optional:    true,
 				Description: "The AWS access key, if not specified look up value from environment or profile",
 			},
-			SchemaSecretKey: {
+			schemaSecretKey: {
 				Type:        schema.TypeString,
 				Optional:    true,
 				Description: "The AWS secret key, if not specified look up value from environment or profile",
 			},
-			SchemaToken: {
+			schemaToken: {
 				Type:        schema.TypeString,
 				Optional:    true,
 				Description: "The AWS session token, if not specified look up value from environment or profile",
 			},
-			SchemaProfile: {
+			schemaProfile: {
 				Type:        schema.TypeString,
 				Optional:    true,
 				Description: "The AWS profile name as set in the shared configuration file",
 			},
-			SchemaBatchSize: {
+			schemaBatchSize: {
 				Type:        schema.TypeInt,
 				Optional:    true,
 				Default:     1,
 				Description: "The maximum number of instances that the provisioner updates in a single pass",
 			},
-			SchemaMIIS: {
+			schemaMIIS: {
 				Type:        schema.TypeInt,
 				Optional:    true,
 				Default:     0,
 				Description: "The minimum number of instances that must be in service within the Auto Scaling group while the provisioner updates old instances",
 			},
-			SchemaPauseTime: {
+			schemaPauseTime: {
 				Type:         schema.TypeString,
 				Optional:     true,
 				Default:      "0s",
 				Description:  "The amount of time the provisioner pauses after making a change to a batch of instances.  Format is golang duration string",
 				ValidateFunc: validateDuration,
 			},
-			SchemaASGNewTime: {
+			schemaASGNewTime: {
 				Type:         schema.TypeString,
 				Optional:     true,
 				Default:      "2m",

@@ -23,19 +23,19 @@ func newAsgHandler(cfg *schema.ResourceData) (*asgHandler, error) {
 	awsOpts := session.Options{SharedConfigState: session.SharedConfigEnable}
 	awsCfg := aws.Config{}
 
-	ak := cfg.Get(SchemaAccessKey).(string)
+	ak := cfg.Get(schemaAccessKey).(string)
 	if len(ak) > 0 {
-		sk := cfg.Get(SchemaSecretKey).(string)
-		st := cfg.Get(SchemaToken).(string)
+		sk := cfg.Get(schemaSecretKey).(string)
+		st := cfg.Get(schemaToken).(string)
 		awsCfg.Credentials = credentials.NewStaticCredentials(ak, sk, st)
 	}
 
-	p := cfg.Get(SchemaProfile).(string)
+	p := cfg.Get(schemaProfile).(string)
 	if len(p) > 0 {
 		awsOpts.Profile = p
 	}
 
-	r := cfg.Get(SchemaRegion).(string)
+	r := cfg.Get(schemaRegion).(string)
 	if len(r) > 0 {
 		awsCfg.Region = &r
 	}
@@ -47,14 +47,14 @@ func newAsgHandler(cfg *schema.ResourceData) (*asgHandler, error) {
 	}
 
 	// previously passed validation, so we'll skip error checking
-	pauseTime, _ := time.ParseDuration(cfg.Get(SchemaPauseTime).(string))
-	freshTime, _ := time.ParseDuration(cfg.Get(SchemaASGNewTime).(string))
+	pauseTime, _ := time.ParseDuration(cfg.Get(schemaPauseTime).(string))
+	freshTime, _ := time.ParseDuration(cfg.Get(schemaASGNewTime).(string))
 
 	h := asgHandler{
 		client:    autoscaling.New(s),
-		asgName:   cfg.Get(SchemaAsgName).(string),
-		batchSize: int64(cfg.Get(SchemaBatchSize).(int)),
-		minInSvc:  int64(cfg.Get(SchemaMIIS).(int)),
+		asgName:   cfg.Get(schemaAsgName).(string),
+		batchSize: int64(cfg.Get(schemaBatchSize).(int)),
+		minInSvc:  int64(cfg.Get(schemaMIIS).(int)),
 		pauseTime: pauseTime,
 		freshTime: freshTime,
 	}
