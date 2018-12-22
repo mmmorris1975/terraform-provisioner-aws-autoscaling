@@ -21,7 +21,7 @@ const (
 	schemaASGNewTime = "asg_new_time"
 )
 
-// define the provisioner schema and actions
+// Provisioner defines the provisioner schema and actions
 func Provisioner() terraform.ResourceProvisioner {
 	return &schema.Provisioner{
 		Schema: map[string]*schema.Schema{
