@@ -128,7 +128,6 @@ resource "null_resource" "test" {
     min_instances_in_service = 1
   }
 }
-
 ```
 
 Contributing
