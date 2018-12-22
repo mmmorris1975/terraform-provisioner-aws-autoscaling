@@ -83,7 +83,8 @@ func Provisioner() terraform.ResourceProvisioner {
 			},
 		},
 
-		ApplyFunc: applyFn,
+		ApplyFunc:    applyFn,
+		ValidateFunc: validateFn,
 	}
 }
 
@@ -93,6 +94,22 @@ func validateDuration(val interface{}, k string) ([]string, []error) {
 		return nil, []error{fmt.Errorf("%s: %s", k, err)}
 	}
 	return nil, nil
+}
+
+func validateFn(c *terraform.ResourceConfig) ([]string, []error) {
+	warnings := make([]string, 0)
+	errors := make([]error, 0)
+
+	// if access_key is provided, secret_key must also be set
+	ak, ok := c.Get(schemaAccessKey)
+	if ok && len(ak.(string)) > 0 {
+		sk, ok := c.Get(schemaSecretKey)
+		if !ok || len(sk.(string)) < 1 {
+			errors = append(errors, fmt.Errorf("access_key specified, but missing secret_key"))
+		}
+	}
+
+	return warnings, errors
 }
 
 func applyFn(ctx context.Context) error {

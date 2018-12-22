@@ -42,7 +42,7 @@ The following table describes the configuration properties supported by this pro
 | Property | Required | Default | Comment |
 :----------|:---------|:--------|:--------|
 | asg_name | true     |         | The name of the AutoScaling Group to manage |
-| region   | true     |         | The AWS region |
+| region   | false    |         | The AWS region, if not provided will use environment variables or profile settings |
 | access_key | false  |         | The AWS access key, if not specified use the SDK default credential lookup chain |
 | secret_key | false  |         | The AWS secret key, if not specified use the SDK default credential lookup chain |
 | token    | false    |         | The AWS session token, if not specified use the SDK default credential lookup chain |
