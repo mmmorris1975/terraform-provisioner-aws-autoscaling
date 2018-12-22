@@ -20,4 +20,4 @@ windows:
 	GOOS=$@ go build -o $(EXE)_v$(VER)_$@-$(GOARCH).exe
 
 clean:
-	rm -f $(EXE) $(EXE)-v*-*-*
+	rm -f $(EXE) $(EXE)_v*_*-*
