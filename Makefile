@@ -3,7 +3,7 @@ VER  := $(shell git describe --tags)
 GOOS ?= $(shell go env GOOS)
 GOARCH ?= $(shell go env GOARCH)
 
-.PHONY: release darwin linux windows clean
+.PHONY: release darwin linux windows clean test
 
 $(EXE): Gopkg.lock *.go
 	go build -v -o $@
@@ -21,3 +21,6 @@ windows:
 
 clean:
 	rm -f $(EXE) $(EXE)_v*_*-*
+
+test:
+	go test -v ./...

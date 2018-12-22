@@ -1,7 +1,6 @@
 .idea
 .terraform
 terraform.tf*
-*.tf
 terraform-provisioner-aws-autoscaling*
 
 vendor/
